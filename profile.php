@@ -53,10 +53,26 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .back-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px; 
+            right: 10px; 
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <h2>Job Application Form</h2>
+    <button class="back-button" onclick="window.location.href = 'employee.php'">back</button>
     <form action="profile.php" method="POST" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" name="name" required><br><br>

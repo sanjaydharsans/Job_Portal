@@ -43,7 +43,8 @@ if ($password == $actualpassword) {
          header("Location: choice.php");
         exit();
     } else {
-        echo "<p>Invalid username or password. Please try again.</p>";
+        header("Location: wronguser.php");
+        exit();
     }
 // $check = $firstObject->username;
 

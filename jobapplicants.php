@@ -24,6 +24,37 @@
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 10px;
+            position: relative; /* Added for positioning the buttons */
+        }
+
+        .buttons {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .approve-button,
+        .delete-button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            background-color: #27ae60;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .approve-button:hover {
+            background-color: #219952;
+        }
+
+        .delete-button {
+            background-color: #e74c3c;
+        }
+
+        .delete-button:hover {
+            background-color: #c0392b;
         }
 
         .search-sort-container {
@@ -50,26 +81,23 @@
         .apply-button:hover {
             background-color: #219952;
         }
-        .back-button {
-            background-color: #007BFF;
-            color: #fff;
+                button {
+            background-color: #3498db;
+            color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 10px;
             cursor: pointer;
-            position: absolute;
-            top: 10px; 
-            right: 10px; 
         }
 
-        .back-button:hover {
-            background-color: #0056b3;
+        button:hover {
+            background-color: #1d7ca7;
         }
     </style>
 </head>
 <body>
     <h1>Job Listings</h1>
-    <button class="back-button" onclick="window.location.href = 'employee.php'">back</button>
+
     <div class="job-list">
         <?php
         // Database connection details
@@ -86,7 +114,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Query to fetch job data
-            $query = "SELECT * FROM jobs";
+            $query = "SELECT * FROM applied_jobs";
             $stmt = $pdo->prepare($query);
             $stmt->execute();
 
@@ -96,10 +124,13 @@
             // Display job data
             foreach ($jobs as $job) {
                 echo '<div class="job-item">';
-                echo '<h3>' . $job['Job_Title'] . '</h3>';
-                echo '<p>' . $job['Job_Description'] . '</p>';
-                echo '<p>Date Posted: ' . $job['Posted_On'] . '</p>';
-                echo '<a href="#" class="apply-button" onclick="applyJob(\'' . $job['Job_Title'] . '\', \'' . $job['Job_Description'] . '\', \'' . $job['Posted_On'] . '\')">Apply</a>';
+                echo '<h3>' . $job['Title'] . '</h3>';
+                echo '<p>' . $job['Description'] . '</p>';
+                echo '<p>Date Posted: ' . $job['Date'] . '</p>';
+                echo '<div class="buttons">';
+                echo '<button class="approve-button" onclick="approveJob(\'' . $job['Title'] . '\')">Approve</button>';
+                echo '<button class="delete-button" onclick="deleteJob(\'' . $job['Title'] . '\')">Delete</button>';
+                echo '</div>';
                 echo '</div>';
             }
         } catch (PDOException $e) {
@@ -109,10 +140,10 @@
     </div>
 
     <script>
-        function applyJob(title, description, postedOn) {
-            // Send a POST request to the PHP script
+        function approveJob(jobTitle) {
+            // Send a POST request to the PHP script to mark the job as approved
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'apply.php', true);
+            xhr.open('POST', 'approve.php', true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
@@ -121,8 +152,24 @@
                     // You can update the UI or perform other actions based on the response here
                 }
             };
-            xhr.send('Job_Title=' + title + '&Job_Description=' + description + '&Posted_On=' + postedOn);
+            xhr.send('Job_Title=' + jobTitle);
+        }
+
+        function deleteJob(jobTitle) {
+            // Send a POST request to the PHP script to delete the job
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'delete.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Handle the response from the PHP script if needed
+                    console.log(xhr.responseText); // Log the response to the console
+                    // You can update the UI or perform other actions based on the response here
+                }
+            };
+            xhr.send('Job_Title=' + jobTitle);
         }
     </script>
+    <button onclick="location.href='employer.php'">Back</button>
 </body>
 </html>

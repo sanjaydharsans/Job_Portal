@@ -1,50 +1,109 @@
-<!DOCTYPE html>
-<html>
+<style>
+    
+*{
+    margin: 0;
+    padding: 0;
+}
+.banner-area{
+    background-image: url('https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYzNzU5MjE4OA&ixlib=rb-1.2.1&q=85');
+    background-position: center center;
+    background-size:cover ;
+    /* -webkit-background-size:cover ; */
+    height: 100vh;
+    width: auto;
+    margin: auto;
+}
+.menu{
+    float: right;
+    list-style: none;
+    margin-top:30px;
+}
+.menu ul li{
+    display: inline-block;
+}
+.menu ul li a{
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family: 'poppins' ,sans-serif;
+    font-size: 16px;
+}
+.menu ul li a:hover{
+    color: rgb(199, 139, 255);
+}
+/* .logo{
+    height: 20%;
+    float: left;
+    color: azure;
+    list-style: none;
+    
+} */
+.banner-text{
+    position: absolute;
+    width: 600px;
+    height: 300px;
+    margin: 20% 30%;
+    text-align: center;
+}
+.banner-text h1{
+    text-align: center;
+    color:rgb(233, 185, 255);
+    
+    text-transform: uppercase;
+    font-size: 60px;
+    font-family: 'poppins' , sans-serif;
+}
+.banner-text p{
+    color: #fff;
+    font-size: 18px;
+}
+.banner-text a{
+    border: 1px solid #fff;
+    padding: 10px 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: 20px;
+    display: inline-block;
+    color: #fff;
+}
+.banner-text a:hover{
+    background-color: white;
+    color: rgba(68, 25, 109, 0.623);
+    font-weight: bold;
+}
+</style>
+
 <head>
-    <title>Job Portal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: radial-gradient(circle at 10% 20%, rgb(69, 86, 102) 0%, rgb(34, 34, 34) 90%);
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            color: white;
-        }
-
-        .button-container {
-            margin-top: 20px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #3498db;
-            color: #ffffff;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .button:hover {
-            background-color: #2980b9;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Homepage design</title>
 </head>
-<body>
-    <h1>Welcome to the Job Portal</h1>
 
-    <div class="button-container">
-        <a href="profile.php" class="button">Profile</a>
-        <a href="jobs.php" class="button">Jobs</a>
-        <a href="applied_jobs.php" class="button">Applied Jobs</a>
-        <a href="login.php" class="button">Logout</a>
+<body>
+    <div class="banner-area">
+    <header>
+           <div class="menu">
+                <ul>
+                    <li><a href="profile.php">Profile</a></li>
+                    <li><a href="jobs.php">Jobs</a></li>
+                    <li><a href="applied_jobs.php">Applied Jobs</a></li>
+                    <li><a href="login.php">Logout</a></li>
+                    
+                </ul>
+            </div>
+
+        </header>
+        <div class="banner-text">
+            <h1>Welcome To Job Search</h1>
+            <p>You don't have to be great to start but you have to start to be great. </p>
+            <a href="#">Read More</a>
+            
+        </div>
+
+
     </div>
 </body>
-</html>
+
